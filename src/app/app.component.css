@@ -1,0 +1,5 @@
+main {
+    background: url(/assets/Imagens_do_curso/background-completo.png);
+    background-size: cover;
+    min-height: 60vh;
+  }

@@ -1,0 +1,147 @@
+<section class="container editar-pensamentos ff-inter">
+  <header class="header">
+    <h2>
+      Edite seu pensamento
+    </h2>
+  </header>
+  <form [formGroup]="form">
+    <label for="pensamento">Pensamento</label>
+    <input
+      id="pensamento"
+      formControlName="conteudo"
+      class="input"
+      type="textarea"
+      placeholder="Digite o pensamento"
+    />
+    <div
+      class="mensagem__erro"
+      *ngIf="form.get('conteudo')?.errors && form.get('conteudo')?.touched"
+    >
+      Campo Pensamento vazio
+    </div>
+
+    <label for="autoria">Autoria ou fonte</label>
+    <input
+      id="autoria"
+      formControlName="autoria"
+      class="input"
+      type="text"
+      placeholder="Digite a autoria ou fonte"
+    />
+    <div
+      class="mensagem__erro"
+      *ngIf="form.get('autoria')?.errors?.['required'] && form.get('autoria')?.touched"
+    >
+      Campo Autoria vazio
+    </div>
+    <div
+      class="mensagem__erro"
+      *ngIf="form.get('autoria')?.errors?.['lowercase'] && form.get('autoria')?.touched"
+    >
+      Autoria permite apenas letras minúsculas
+    </div>
+    <div
+      class="mensagem__erro"
+      *ngIf="form.get('autoria')?.errors?.['minlength'] && form.get('autoria')?.touched"
+    >
+      Autoria precisa de no mínimo 3 caracteres
+    </div>
+
+    <label for="modelo">Selecione o modelo do card:</label>
+    <div class="container-radio">
+      <div class="radio-modelo">
+        <label for="modelo1">
+          <input
+            id="modelo1"
+            value="modelo1"
+            formControlName="modelo"
+            type="radio"
+          />
+          <div class="custom-radio">
+            <span></span>
+          </div>
+          <span>Modelo 1</span>
+        </label>
+        Prévia:
+        <div class="modelo modelo1 ff-roboto-mono">
+          <img
+            src="../../../../assets/Imagens_do_curso/modelo1.png"
+            alt="Aspas azuis"
+          />
+          <p class="conteudo">{{ form.get("conteudo")?.value }}</p>
+          <p class="autoria">
+            <b> {{ form.get("autoria")?.value }} </b>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-radio">
+      <div class="radio-modelo">
+        <label for="modelo2">
+          <input
+            id="modelo2"
+            value="modelo2"
+            formControlName="modelo"
+            type="radio"
+          />
+          <div class="custom-radio">
+            <span></span>
+          </div>
+          <span>Modelo 2</span>
+        </label>
+        Prévia:
+        <div class="modelo modelo2 ff-roboto-mono">
+          <img
+            src="../../../../assets/Imagens_do_curso/modelo2.png"
+            alt="Aspas ciano"
+          />
+          <p class="conteudo">{{ form.get("conteudo")?.value }}</p>
+          <p class="autoria">
+            <b> {{ form.get("autoria")?.value }} </b>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-radio">
+      <div class="radio-modelo">
+        <label for="modelo3">
+          <input
+            id="modelo3"
+            value="modelo3"
+            formControlName="modelo"
+            type="radio"
+          />
+          <div class="custom-radio">
+            <span></span>
+          </div>
+          <span>Modelo 3</span>
+        </label>
+        Prévia:
+        <div class="modelo modelo3 ff-roboto-mono">
+          <img
+            src="../../../../assets/Imagens_do_curso/modelo3.png"
+            alt="Aspas ciano clarinho"
+          />
+          <p class="conteudo">{{ form.get("conteudo")?.value }}</p>
+          <p class="autoria">
+            <b> {{ form.get("autoria")?.value }} </b>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="acoes">
+      <button
+        class="botao"
+        [disabled]="!form.valid"
+        [ngClass]="habilitarBotao()"
+        (click)="editarPensamento()"
+      >
+        Salvar
+      </button>
+      <button class="botao" (click)="cancelar()">Cancelar</button>
+    </div>
+  </form>
+</section>
